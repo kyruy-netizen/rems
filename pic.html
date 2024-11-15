@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Listings</title> 
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">MyLogo</div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <div>
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="pic.html">Properties</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="nav-list">
+            <ul >
+                <li><a href="sign-up.html">Sign Up</a></li>
+                <li><a href="login.html">Login</a></li>
+        </div>
+
+    </nav>
+    <p>REMS is a comprehensive online property management software that enables real estate agents and landlords to effectively manage their properties, including property information, maintenance requests, and invoicing. It has quickly become the go-to software for all agents and property owners in Kenya for all their property management needs.</p>
+    <section class="property-listings">
+    <div class="container">
+        <ul>
+            <li>
+                <h2>High Peak Home</h2>
+                <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?cs=srgb&dl=road-summer-house-1396122.jpg&fm=jpg" alt="High Peak Home">
+                <p>Price: KSH 100,000</p>
+                <p>Location: Lanet Nakuru</p>
+                <a href="/property/{{ property[0] }}">View Details</a>
+            </li>
+            <li>
+                <h2>Sunset Ridge</h2>
+                <img src="https://th.bing.com/th/id/OIP.RM4nwfyV5n5N_ylO6sPIRAHaFj?rs=1&pid=ImgDetMain" alt="Sunset Ridge">
+                <p>Price: KSH 1,500,000</p>
+                <p>Location: Naivasha Nakuru</p>
+                <a href="/property/{{ property[0] }}">View Details</a>
+            </li>
+            <li>
+                <h2>Simple Modern House</h2>
+                <img src="https://th.bing.com/th/id/OIP.i2YTH6Bc2q8ZeRQFsVIshQHaE8?rs=1&pid=ImgDetMain" alt="Simple Modern House">
+                <p>Price: KSH 5,000,000</p>
+                <p>Location: Lanet Nakuru</p>
+                <a href="/property/{{ property[0] }}">View Details</a>
+            </li>
+            <li>
+                <h2>Modern House</h2>
+                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" alt="Modern House">
+                <p>Price: KSH 1,200,000</p>
+                <p>Location: Naivasha Nakuru</p>
+                <a href="/property/{{ property[0] }}">View Details</a>
+            </li>
+            <li>
+                <h2>Cozy House</h2>
+                <img src="https://th.bing.com/th/id/OIP.wM0uHu-4gHHhL5jdq4oh0gHaJ9?&rs=1&pid=ImgDetMain" alt="Cozy House">
+                <p>Price: KSH 1,600,000</p>
+                <p>Location: Gilgil Nakuru</p>
+                <a href="/property/{{ property[0] }}">View Details</a>
+            </li>
+            <li>
+                <h2>Ultra Modern House</h2>
+                <img src="https://th.bing.com/th/id/OIP.-w7in20rnkKLD03yfRaEzwHaHa?rs=1&pid=ImgDetMain" alt="Ultra Modern House">
+                <p>Price: KSH 1,700,000</p>
+                <p>Location: Gilgil Nakuru</p>
+                <a href="/property/{{ property[0] }}">View Details</a>
+            </li>
+            <li>
+                <h2>Stunning Man-Made House</h2>
+                <img src="https://images7.alphacoders.com/341/341714.jpg" alt="Stunning Man-Made House">
+                <p>Price: KSH 1,500,000</p>
+                <p>Location: Naivasha Nakuru</p>
+                <a href="/property/{{ property[0] }}">View Details</a>
+            </li>
+        </ul>
+    </div>
+    </section>1
+</body>
+
+</html>

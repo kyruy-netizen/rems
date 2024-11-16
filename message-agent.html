@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Agent - REMS</title>
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                        url('https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+            background: linear-gradient(rgba(54, 54, 100, 0.9), rgba(54, 54, 100, 0.9));
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .message-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .agent-info {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .agent-profile {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .agent-profile img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .agent-stats {
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.5rem 0;
+            color: #666;
+        }
+
+        .property-preview {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #ddd;
+        }
+
+        .property-preview img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .message-form {
+            padding: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 200px;
+            resize: vertical;
+        }
+
+        .send-btn {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .send-btn:hover {
+            background: #45a049;
+        }
+
+        @media (max-width: 768px) {
+            .message-container {
+                grid-template-columns: 1fr;
+            }
+
+            .agent-info {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">REMS</a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pic.html">Properties</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="auth-links">
+            <a href="sign-up.html" class="signup-btn">Sign Up</a>
+            <a href="login.html" class="login-btn">Login</a>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>Message Agent</h1>
+        <p>Get in touch about this property</p>
+    </div>
+
+    <div class="container">
+        <div class="message-container">
+            <div class="agent-info">
+                <div class="agent-profile">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Agent Name">
+                    <h3 id="agentName">John Smith</h3>
+                    <p>Senior Property Agent</p>
+                </div>
+                <div class="agent-stats">
+                    <div class="stat-item">
+                        <span>Experience</span>
+                        <span>5+ years</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Properties Sold</span>
+                        <span>50+</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Response Rate</span>
+                        <span>98%</span>
+                    </div>
+                </div>
+                <div class="property-preview">
+                    <h4>Property Details</h4>
+                    <img id="propertyImage" src="" alt="Property">
+                    <h5 id="propertyTitle"></h5>
+                    <p id="propertyLocation"></p>
+                    <p id="propertyPrice"></p>
+                </div>
+            </div>
+
+            <div class="message-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="send-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="navbar.js"></script>
+    <script>
+        // Property data
+        const propertyData = {
+            1: {
+                title: 'High Peak Home',
+                price: 'KSH 100,000',
+                location: 'Lanet, Nakuru',
+                image: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg',
+                agent: {
+                    name: 'John Smith',
+                    image: 'https://randomuser.me/api/portraits/men/32.jpg',
+                    experience: '5+ years',
+                    propertiesSold: '50+',
+                    responseRate: '98%'
+                }
+            },
+            2: {
+                title: 'Sunset Villa',
+                price: 'KSH 150,000',
+                location: 'Milimani, Nakuru',
+                image: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg',
+                agent: {
+                    name: 'Sarah Johnson',
+                    image: 'https://randomuser.me/api/portraits/women/45.jpg',
+                    experience: '8+ years', 
+                    propertiesSold: '75+',
+                    responseRate: '95%'
+                }
+            },
+            3: {
+                title: 'Lakeside Apartment',
+                price: 'KSH 80,000',
+                location: 'Gilgil',
+                image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg',
+                agent: {
+                    name: 'Michael Chen',
+                    image: 'https://randomuser.me/api/portraits/men/56.jpg',
+                    experience: '3+ years',
+                    propertiesSold: '25+', 
+                    responseRate: '92%'
+                }
+            },
+            4: {
+                title: 'Garden Estate',
+                price: 'KSH 200,000',
+                location: 'Lanet, Nakuru',
+                image: 'https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg',
+                agent: {
+                    name: 'Emily Rodriguez',
+                    image: 'https://randomuser.me/api/portraits/women/22.jpg',
+                    experience: '10+ years',
+                    propertiesSold: '100+',
+                    responseRate: '99%'
+                }
+            }
+            // Add other properties...
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get property ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const propertyId = urlParams.get('property');
+            
+            // Get property data
+            const property = propertyData[propertyId];
+            
+            if (property) {
+                // Update property preview
+                document.getElementById('propertyImage').src = property.image;
+                document.getElementById('propertyTitle').textContent = property.title;
+                document.getElementById('propertyLocation').innerHTML = `<i class="fas fa-map-marker-alt"></i> ${property.location}`;
+                document.getElementById('propertyPrice').innerHTML = `<i class="fas fa-money-bill"></i> ${property.price}`;
+                
+                // Update agent info
+                document.getElementById('agentName').textContent = property.agent.name;
+            }
+
+            // Form submission
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Collect form data
+                const formData = {
+                    propertyId: propertyId,
+                    propertyTitle: property.title,
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    message: document.getElementById('message').value
+                };
+
+                // Here you would typically send the form data to your server
+                console.log('Message data:', formData);
+                alert('Message sent successfully! The agent will contact you soon.');
+                
+                // Reset form
+                this.reset();
+            });
+        });
+    </script>
+</body>
+</html> 

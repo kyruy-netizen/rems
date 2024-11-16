@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agents Management - REMS Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Include the admin dashboard styles -->
+    <style>
+        /* Base Admin Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #45a049;
+            --sidebar-width: 250px;
+            --header-height: 60px;
+        }
+
+        body {
+            background: #f4f6f9;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: var(--sidebar-width);
+            background: #2c3e50;
+            color: white;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 1rem 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .menu-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item a {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            color: #ecf0f1;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+
+        .menu-item a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-item i {
+            margin-right: 0.8rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 2rem;
+        }
+
+        /* Additional styles for agents page */
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .agent-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .agent-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            z-index: 1;
+        }
+
+        .status-online {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-offline {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-busy {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .agent-header {
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .agent-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+        }
+
+        .agent-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .agent-info {
+            padding: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .info-item i {
+            width: 20px;
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .agent-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            padding: 1rem;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .agent-actions {
+            padding: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            border-top: 1px solid #eee;
+        }
+
+        .action-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .view-btn {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .suspend-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>REMS Admin</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="menu-item">
+                <a href="admin-dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#properties">
+                    <i class="fas fa-building"></i>
+                    Properties
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#users">
+                    <i class="fas fa-users"></i>
+                    Users
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="agents.html" class="active">
+                    <i class="fas fa-user-tie"></i>
+                    Agents
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#bookings">
+                    <i class="fas fa-calendar-check"></i>
+                    Bookings
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#messages">
+                    <i class="fas fa-envelope"></i>
+                    Messages
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#reports">
+                    <i class="fas fa-chart-bar"></i>
+                    Reports
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#settings">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content (Your existing agents.html content) -->
+    <div class="main-content">
+        <div class="header">
+            <h2>Agents Management</h2>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search agents...">
+            </div>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All Agents</button>
+            <button class="filter-btn" data-filter="online">Online</button>
+            <button class="filter-btn" data-filter="busy">Busy</button>
+            <button class="filter-btn" data-filter="offline">Offline</button>
+        </div>
+
+        <div class="agents-grid">
+            <!-- Agent Card Template -->
+            <div class="agent-card" data-status="online">
+                <span class="agent-status status-online">Online</span>
+                <div class="agent-header">
+                    <div class="agent-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Agent">
+                    </div>
+                    <h3>John Smith</h3>
+                    <p>Senior Property Agent</p>
+                </div>
+                <div class="agent-info">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>john.smith@rems.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+254 712 345 678</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Nakuru, Kenya</span>
+                    </div>
+                </div>
+                <div class="agent-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">45</div>
+                        <div class="stat-label">Properties</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">128</div>
+                        <div class="stat-label">Deals</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">4.8</div>
+                        <div class="stat-label">Rating</div>
+                    </div>
+                </div>
+                <div class="agent-actions">
+                    <button class="action-btn view-btn">View Details</button>
+                    <button class="action-btn suspend-btn">Suspend</button>
+                </div>
+            </div>
+
+            <!-- Add more agent cards here -->
+        </div>
+    </div>
+
+    <!-- Keep your existing JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const agentCards = document.querySelectorAll('.agent-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+
+                    const filter = button.dataset.filter;
+
+                    // Show/hide agent cards based on filter
+                    agentCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.status === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Search functionality
+            const searchInput = document.querySelector('.search-bar input');
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+
+                agentCards.forEach(card => {
+                    const agentName = card.querySelector('h3').textContent.toLowerCase();
+                    const agentEmail = card.querySelector('.info-item span').textContent.toLowerCase();
+
+                    if (agentName.includes(searchTerm) || agentEmail.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

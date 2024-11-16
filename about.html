@@ -5,211 +5,188 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="REMS is a comprehensive online property management software for real estate agents and landlords in Kenya.">
     <meta name="keywords" content="property management, real estate, software, Kenya">
-    <title>REMS - Property Management Software</title>
+    <title>About Us - REMS</title>
     <link rel="stylesheet" href="navbar.css">
-    <script src="navbar.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Global styles */
-        html, body {
-            height: 100%;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f9f9f9;
-            display: flex;
-            flex-direction: column;
-        }
-
         body {
-            flex: 1; /* Ensures the body takes up the remaining space */
-        }
-
-        header {
-            background-color: white;
-            color: rgb(92, 92, 221);
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .nav-links {
-            list-style-type: none;
-            display: flex;
-            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
+            padding: 0;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                        url('https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333;
+            line-height: 1.6;
         }
 
-        .nav-links li {
-            margin: 0 15px;
+        .hero {
+            background: linear-gradient(rgba(54, 54, 100, 0.9), rgba(54, 54, 100, 0.9));
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            margin-bottom: 4rem;
         }
 
-        .nav-links a {
-            color: rgb(90, 90, 197);
-            text-decoration: none;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        .nav-list {
-            color: rgb(92, 92, 216);
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .steps {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 3rem 0;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(rgba(54, 54, 100, 0.9), rgba(54, 54, 100, 0.9));
+            color: white;
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+            border-radius: 12px;
         }
 
         .cta-button {
             display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #2980b9;
+            padding: 1rem 2rem;
+            background: #4CAF50;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .cta-button:hover {
-            background-color: #3498db;
-        }
-
-        main {
-            flex: 1; /* Takes up the remaining space between header and footer */
-            padding: 20px;
+            border-radius: 6px;
+            transition: background 0.3s ease;
         }
 
         footer {
-            background-color: #333;
+            background: #333;
             color: white;
+            padding: 2rem;
             text-align: center;
-            padding: 10px 0;
-            width: 100%;
-            position: relative;
-            bottom: 0; /* Stick the footer at the bottom of the page */
+            margin-top: 4rem;
         }
 
-        section {
-            margin-bottom: 40px;
-        }
-
-        h3 {
-            color: rgb(92, 92, 221);
-        }
-
-        .feature {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .feature div {
-            width: 48%;
-        }
-
-        .testimonial {
-            background-color: #f1f1f1;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-        }
-
-        .testimonial h4 {
-            color: #333;
-        }
-
-        .testimonial p {
-            color: #555;
+        @media (max-width: 768px) {
+            .container { padding: 0 1rem; }
+            .hero { padding: 4rem 1rem 2rem; }
+            .steps { padding: 2rem; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <a href="index.html">REMS</a>
-            </div>
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="pic.html">Properties</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <div class="auth-links">
-                <a href="sign-up.html" class="signup-btn">Sign Up</a>
-                <a href="login.html" class="login-btn">Login</a>
-            </div>
-        </nav> 
-    </header>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">REMS</a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pic.html">Properties</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="auth-links">
+            <a href="sign-up.html" class="signup-btn">Sign Up</a>
+            <a href="login.html" class="login-btn">Login</a>
+        </div>
+    </nav>
 
-    <main>
-        <section>
-            <h3>WHO WE ARE</h3>
-            <h2>Boost Your Property Management Efficiency with REMS</h2>
-            <p>REMS is a comprehensive online property management software that enables real estate agents and landlords to efficiently manage their properties, including property information, maintenance requests, and invoicing. It has quickly become the go-to software for all agents and property owners in Kenya for all their property management needs.</p>
-            <a href="sign-up.html" class="cta-button">Get Started</a>
-        </section>
+    <section class="hero">
+        <h1>About REMS</h1>
+        <p>Transforming property management through innovative technology and exceptional service</p>
+    </section>
 
-        <section>
-            <h3>Features</h3>
-            <div class="feature">
-                <div>
-                    <h4>Property Management</h4>
-                    <p>Easily track and manage all your properties, including property details, lease agreements, and payment history.</p>
-                </div>
-                <div>
-                    <h4>Maintenance Requests</h4>
-                    <p>Allow tenants to submit maintenance requests directly through the platform. Get notifications and manage repairs in one place.</p>
-                </div>
+    <div class="container">
+        <section class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-building"></i>
+                <h3>Property Management</h3>
+                <p>Comprehensive tools for managing properties, tenants, and maintenance requests all in one place.</p>
             </div>
-            <div class="feature">
-                <div>
-                    <h4>Financial Tools</h4>
-                    <p>Automatically generate invoices, track rent payments, and manage your property's finances effortlessly.</p>
-                </div>
-                <div>
-                    <h4>Tenant Communication</h4>
-                    <p>Stay connected with tenants through in-app messaging, notifications, and reminders about important events like rent payments and maintenance schedules.</p>
-                </div>
+            <div class="feature-card">
+                <i class="fas fa-tools"></i>
+                <h3>Maintenance Tracking</h3>
+                <p>Efficiently handle maintenance requests and track repairs with our intuitive system.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-money-bill-wave"></i>
+                <h3>Financial Tools</h3>
+                <p>Streamline rent collection and financial reporting with our automated tools.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-comments"></i>
+                <h3>Communication Hub</h3>
+                <p>Stay connected with tenants through our integrated messaging system.</p>
             </div>
         </section>
 
-        <section>
-            <h3>How It Works</h3>
-            <p>Our platform is user-friendly and designed for ease of use. Here’s how it works:</p>
-            <ol>
-                <li><strong>Sign Up:</strong> Create an account and set up your properties.</li>
-                <li><strong>Manage Properties:</strong> Upload property details, set rent prices, and track payment history.</li>
-                <li><strong>Receive Requests:</strong> Tenants can submit maintenance or other service requests directly through the platform.</li>
-                <li><strong>Invoicing & Payments:</strong> Automatically generate invoices for your tenants and track payments.</li>
-                <li><strong>Reports:</strong> Get detailed reports on your properties’ performance and financial status.</li>
-            </ol>
+        <section class="steps">
+            <h2>How It Works</h2>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <h3>Sign Up</h3>
+                    <p>Create your account and set up your property portfolio in minutes.</p>
+                </div>
+            </div>
         </section>
 
-        <section>
-            <h3>What Our Users Say</h3>
+        <section class="testimonials">
             <div class="testimonial">
-                <h4>Savannah Georgieh, Property Manager</h4>
-                <p>"REMS has revolutionized the way I manage my properties. The platform is easy to use, and I can now track everything in one place – from maintenance requests to invoicing!"</p>
-            </div>
-            <div class="testimonial">
-                <h4>Jane Smith, Landlord</h4>
-                <p>"As a landlord, I love the financial tracking tools in REMS. It makes my life so much easier, and I can be sure that I'm always on top of my rent payments."</p>
+                <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Sarah Johnson">
+                <h4>Sarah Johnson</h4>
+                <p>"REMS has transformed how I manage my properties. The platform is intuitive and saves me hours each week."</p>
             </div>
         </section>
-        
-        <section>
-            <h3>Ready to Start?</h3>
-            <p>Join the thousands of real estate agents and landlords who trust REMS for their property management needs. It's simple to get started, and our team is here to support you every step of the way.</p>
-            <a href="sign-up.html" class="cta-button">Sign Up Now</a>
+
+        <section class="cta-section">
+            <h2>Ready to Transform Your Property Management?</h2>
+            <p>Join thousands of satisfied property managers and owners using REMS</p>
+            <a href="sign-up.html" class="cta-button">Get Started Today</a>
         </section>
-    </main>
+    </div>
 
     <footer>
-        <p>&copy; 2024 Real Estate Management. All rights reserved.</p>
+        <p>&copy; 2024 Real Estate Management System. All rights reserved.</p>
     </footer>
+
+    <script src="navbar.js"></script>
 </body>
 </html>

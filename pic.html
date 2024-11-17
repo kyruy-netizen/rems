@@ -3,89 +3,455 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property Listings</title> 
-<link rel="stylesheet" href="style.css">
+    <title>Property Listings - REMS</title>
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --background-color: #f4f4f4;
+            --text-color: #333;
+            --card-bg: #fff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        .intro-text {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .intro-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .property-listings {
+            padding: 3rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .property-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .property-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .property-card:hover .property-image img {
+            transform: scale(1.1);
+        }
+
+        .property-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .property-content {
+            padding: 1.5rem;
+        }
+
+        .property-content h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .property-details {
+            margin-bottom: 1rem;
+        }
+
+        .property-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .property-info i {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+        }
+
+        .property-features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .view-details-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.6rem 1.2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-details-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #fff;
+            margin: 5vh auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 12px;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .property-gallery {
+            margin-bottom: 2rem;
+        }
+
+        .property-gallery img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .property-details-full {
+            padding: 1rem 0;
+        }
+
+        .price-location {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .features-full {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1.5rem 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .contact-agent {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn, .schedule-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .contact-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .schedule-btn {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+            }
+
+            .navbar .nav-links {
+                margin-top: 1rem;
+            }
+
+            .navbar .nav-links li {
+                margin-left: 0;
+                margin-right: 1rem;
+            }
+
+            .property-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 95%;
+            }
+
+            .property-gallery img {
+                height: 300px;
+            }
+
+            .price-location {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">MyLogo</div>
+        <div class="logo">
+            <a href="index.html">REMS</a>
+        </div>
         <div class="menu-toggle" id="mobile-menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </div>
-        <div>
-            <ul class="nav-list">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="pic.html">Properties</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-        <div class="nav-list">
-            <ul >
-                <li><a href="sign-up.html">Sign Up</a></li>
-                <li><a href="login.html">Login</a></li>
-        </div>
-
-    </nav>
-    <p>REMS is a comprehensive online property management software that enables real estate agents and landlords to effectively manage their properties, including property information, maintenance requests, and invoicing. It has quickly become the go-to software for all agents and property owners in Kenya for all their property management needs.</p>
-    <section class="property-listings">
-    <div class="container">
-        <ul>
-            <li>
-                <h2>High Peak Home</h2>
-                <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?cs=srgb&dl=road-summer-house-1396122.jpg&fm=jpg" alt="High Peak Home">
-                <p>Price: KSH 100,000</p>
-                <p>Location: Lanet Nakuru</p>
-                <a href="/property/{{ property[0] }}">View Details</a>
-            </li>
-            <li>
-                <h2>Sunset Ridge</h2>
-                <img src="https://th.bing.com/th/id/OIP.RM4nwfyV5n5N_ylO6sPIRAHaFj?rs=1&pid=ImgDetMain" alt="Sunset Ridge">
-                <p>Price: KSH 1,500,000</p>
-                <p>Location: Naivasha Nakuru</p>
-                <a href="/property/{{ property[0] }}">View Details</a>
-            </li>
-            <li>
-                <h2>Simple Modern House</h2>
-                <img src="https://th.bing.com/th/id/OIP.i2YTH6Bc2q8ZeRQFsVIshQHaE8?rs=1&pid=ImgDetMain" alt="Simple Modern House">
-                <p>Price: KSH 5,000,000</p>
-                <p>Location: Lanet Nakuru</p>
-                <a href="/property/{{ property[0] }}">View Details</a>
-            </li>
-            <li>
-                <h2>Modern House</h2>
-                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" alt="Modern House">
-                <p>Price: KSH 1,200,000</p>
-                <p>Location: Naivasha Nakuru</p>
-                <a href="/property/{{ property[0] }}">View Details</a>
-            </li>
-            <li>
-                <h2>Cozy House</h2>
-                <img src="https://th.bing.com/th/id/OIP.wM0uHu-4gHHhL5jdq4oh0gHaJ9?&rs=1&pid=ImgDetMain" alt="Cozy House">
-                <p>Price: KSH 1,600,000</p>
-                <p>Location: Gilgil Nakuru</p>
-                <a href="/property/{{ property[0] }}">View Details</a>
-            </li>
-            <li>
-                <h2>Ultra Modern House</h2>
-                <img src="https://th.bing.com/th/id/OIP.-w7in20rnkKLD03yfRaEzwHaHa?rs=1&pid=ImgDetMain" alt="Ultra Modern House">
-                <p>Price: KSH 1,700,000</p>
-                <p>Location: Gilgil Nakuru</p>
-                <a href="/property/{{ property[0] }}">View Details</a>
-            </li>
-            <li>
-                <h2>Stunning Man-Made House</h2>
-                <img src="https://images7.alphacoders.com/341/341714.jpg" alt="Stunning Man-Made House">
-                <p>Price: KSH 1,500,000</p>
-                <p>Location: Naivasha Nakuru</p>
-                <a href="/property/{{ property[0] }}">View Details</a>
-            </li>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pic.html">Properties</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
-    </div>
-    </section>1
-</body>
+        <div class="auth-links">
+            <a href="sign-up.html" class="signup-btn">Sign Up</a>
+            <a href="login.html" class="login-btn">Login</a>
+        </div>
+    </nav>
 
+    <div class="intro-text">
+        <h1>Available Properties</h1>
+        <p>Discover your perfect property from our carefully curated collection of premium real estate listings.</p>
+    </div>
+
+    <section class="property-listings">
+        <div class="container">
+            <div class="property-grid">
+                <!-- Property cards will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <div id="propertyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="property-gallery">
+                    <img id="modalImage" src="" alt="Property Image">
+                </div>
+                <div class="property-details-full">
+                    <h2 id="modalTitle"></h2>
+                    <div class="price-location">
+                        <p class="modal-price"><i class="fas fa-money-bill"></i> <span id="modalPrice"></span></p>
+                        <p class="modal-location"><i class="fas fa-map-marker-alt"></i> <span id="modalLocation"></span></p>
+                    </div>
+                    <div class="features-full">
+                        <div id="modalFeatures"></div>
+                    </div>
+                    <div class="property-description">
+                        <h3>Description</h3>
+                        <p id="modalDescription"></p>
+                    </div>
+                    <div class="contact-agent">
+                        <h3>Contact Agent</h3>
+                        <a href="#" class="contact-btn" id="messageAgentBtn">Message Agent</a>
+                        <a href="#" class="schedule-btn" id="scheduleLink">Schedule Viewing</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const propertyData = [
+                {
+                    id: 1,
+                    title: 'High Peak Home',
+                    price: 'KSH 100,000',
+                    location: 'Lanet, Nakuru',
+                    image: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg',
+                    features: ['3 Beds', '2 Baths', '1500 sq ft'],
+                    description: 'A beautiful modern home featuring spacious rooms, modern amenities, and a stunning view. Perfect for families looking for comfort and style.',
+                    tag: 'Featured'
+                },
+                {
+                    id: 2,
+                    title: 'Modern Villa',
+                    price: 'KSH 150,000',
+                    location: 'Naivasha',
+                    image: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg',
+                    features: ['4 Beds', '3 Baths', '2000 sq ft'],
+                    description: 'Luxurious villa with panoramic views, modern finishes, and a spacious garden. Ideal for those seeking elegance and comfort.',
+                    tag: 'New'
+                },
+                {
+                    id: 3,
+                    title: 'Lakeside Apartment',
+                    price: 'KSH 80,000',
+                    location: 'Gilgil',
+                    image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg',
+                    features: ['2 Beds', '1 Bath', '1000 sq ft'],
+                    description: 'Cozy apartment with beautiful lake views, modern amenities, and a convenient location. Perfect for small families or professionals.'
+                },
+                {
+                    id: 4,
+                    title: 'Garden Estate',
+                    price: 'KSH 200,000',
+                    location: 'Lanet, Nakuru',
+                    image: 'https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg',
+                    features: ['5 Beds', '4 Baths', '3000 sq ft'],
+                    description: 'Spectacular estate with extensive gardens, premium finishes, and luxurious amenities. The perfect blend of comfort and luxury.',
+                    tag: 'Premium'
+                }
+            ];
+
+            const propertyGrid = document.querySelector('.property-grid');
+            const modal = document.getElementById('propertyModal');
+            const closeBtn = document.querySelector('.close-modal');
+
+            function createPropertyCard(property) {
+                const card = document.createElement('div');
+                card.className = 'property-card';
+                card.innerHTML = `
+                    <div class="property-image">
+                        <img src="${property.image}" alt="${property.title}">
+                        ${property.tag ? `<div class="property-tag">${property.tag}</div>` : ''}
+                    </div>
+                    <div class="property-content">
+                        <h2>${property.title}</h2>
+                        <div class="property-details">
+                            <div class="property-info">
+                                <i class="fas fa-money-bill"></i>
+                                <p class="price">${property.price}</p>
+                            </div>
+                            <div class="property-info">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <p class="location">${property.location}</p>
+                            </div>
+                            <div class="property-features">
+                                ${property.features.map(feature => `<span><i class="fas fa-check"></i> ${feature}</span>`).join('')}
+                            </div>
+                        </div>
+                        <a href="#" class="view-details-btn" data-id="${property.id}">View Details</a>
+                    </div>
+                `;
+                return card;
+            }
+
+            function populateModal(property) {
+                document.getElementById('modalImage').src = property.image;
+                document.getElementById('modalTitle').textContent = property.title;
+                document.getElementById('modalPrice').textContent = property.price;
+                document.getElementById('modalLocation').textContent = property.location;
+                document.getElementById('modalFeatures').innerHTML = property.features
+                    .map(feature => `<span><i class="fas fa-check"></i> ${feature}</span>`)
+                    .join('');
+                document.getElementById('modalDescription').textContent = property.description;
+                document.getElementById('scheduleLink').href = `schedule-visit.html?property=${property.id}`;
+                document.getElementById('messageAgentBtn').href = `message-agent.html?property=${property.id}`;
+            }
+
+            propertyData.forEach(property => {
+                const card = createPropertyCard(property);
+                propertyGrid.appendChild(card);
+            });
+
+            propertyGrid.addEventListener('click', function(e) {
+                if (e.target.classList.contains('view-details-btn')) {
+                    e.preventDefault();
+                    const propertyId = parseInt(e.target.getAttribute('data-id'));
+                    const property = propertyData.find(p => p.id === propertyId);
+                    if (property) {
+                        populateModal(property);
+                        modal.style.display = 'block';
+                        document.body.style.overflow = 'hidden';
+                    }
+                }
+            });
+
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
+</body>
 </html>

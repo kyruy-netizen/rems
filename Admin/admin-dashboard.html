@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - REMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Mobile Menu Toggle -->
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+        <div class="mobile-dropdown">
+            <div class="mobile-user-info">
+                <img src="admin-avatar.jpg" alt="Admin">
+                <span>Admin User</span>
+            </div>
+            <div class="mobile-menu-items">
+                <a href="#profile"><i class="fas fa-user"></i> Profile</a>
+                <a href="#notifications"><i class="fas fa-bell"></i> Notifications</a>
+                <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+                <div class="dropdown-divider"></div>
+                <a href="login.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="logo.png" alt="REMS Logo" class="logo">
+            <h2>REMS Admin</h2>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li class="menu-item">
+                <a href="#dashboard" class="active">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#properties">
+                    <i class="fas fa-building"></i>
+                    Properties
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#users">
+                    <i class="fas fa-users"></i>
+                    Users
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#agents">
+                    <i class="fas fa-user-tie"></i>
+                    Agents
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#bookings">
+                    <i class="fas fa-calendar-check"></i>
+                    Bookings
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#messages">
+                    <i class="fas fa-envelope"></i>
+                    Messages
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#reports">
+                    <i class="fas fa-chart-bar"></i>
+                    Reports
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#settings">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header with user profile -->
+        <div class="header">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search...">
+            </div>
+            
+            <div class="user-profile">
+                <img src="admin-avatar.jpg" alt="Admin">
+                <span class="user-name">Admin User</span>
+                <i class="fas fa-chevron-down"></i>
+                
+                <div class="profile-dropdown">
+                    <a href="#profile"><i class="fas fa-user"></i> Profile</a>
+                    <a href="#notifications"><i class="fas fa-bell"></i> Notifications</a>
+                    <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="logout.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard">
+            <div class="dashboard-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Total Properties</h4>
+                        <div class="card-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                    </div>
+                    <h3>156</h3>
+                    <p>+12 this month</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Active Users</h4>
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                    <h3>2,453</h3>
+                    <p>+8% from last week</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Bookings</h4>
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                    </div>
+                    <h3>45</h3>
+                    <p>This week</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Revenue</h4>
+                        <div class="card-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                    </div>
+                    <h3>KSH 1.2M</h3>
+                    <p>This month</p>
+                </div>
+            </div>
+
+            <div class="recent-activities">
+                <h3>Recent Activities</h3>
+                <table class="activities-table">
+                    <thead>
+                        <tr>
+                            <th>Activity</th>
+                            <th>User</th>
+                            <th>Property</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Property Viewing</td>
+                            <td>John Doe</td>
+                            <td>High Peak Home</td>
+                            <td>2024-03-20</td>
+                            <td><span class="status pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>Property Listed</td>
+                            <td>Agent Smith</td>
+                            <td>Sunset Villa</td>
+                            <td>2024-03-19</td>
+                            <td><span class="status completed">Completed</span></td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Properties Section -->
+        <section id="properties" style="display: none;">
+            <h2>Property Management</h2>
+            <div class="section-header">
+                <button class="add-new-btn"><i class="fas fa-plus"></i> Add New Property</button>
+                <div class="filter-options">
+                    <select>
+                        <option>All Properties</option>
+                        <option>For Sale</option>
+                        <option>For Rent</option>
+                        <option>Featured</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="properties-grid">
+                <!-- Property Card -->
+                <div class="property-card">
+                    <div class="property-image">
+                        <img src="property1.jpg" alt="Luxury Villa">
+                        <span class="property-badge sale">For Sale</span>
+                    </div>
+                    <div class="property-details">
+                        <h3>Luxury Villa</h3>
+                        <p class="property-location"><i class="fas fa-map-marker-alt"></i> Karen, Nairobi</p>
+                        <div class="property-features">
+                            <span><i class="fas fa-bed"></i> 4 Beds</span>
+                            <span><i class="fas fa-bath"></i> 3 Baths</span>
+                            <span><i class="fas fa-ruler-combined"></i> 2500 sq ft</span>
+                        </div>
+                        <div class="property-price">
+                            <h4>KSH 25,000,000</h4>
+                            <span class="status listed">Listed</span>
+                        </div>
+                        <div class="property-actions">
+                            <button class="action-btn edit"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="action-btn delete"><i class="fas fa-trash"></i> Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more property cards as needed -->
+            </div>
+        </section>
+
+        <!-- Users Section -->
+        <section id="users" style="display: none;">
+            <h2>User Management</h2>
+            <div class="section-header">
+                <button class="add-new-btn"><i class="fas fa-plus"></i> Add New User</button>
+                <div class="filter-options">
+                    <select>
+                        <option>All Users</option>
+                        <option>Active</option>
+                        <option>Inactive</option>
+                    </select>
+                </div>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Join Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Sample user data -->
+                    <tr>
+                        <td>#001</td>
+                        <td>John Doe</td>
+                        <td>john@example.com</td>
+                        <td>2024-01-15</td>
+                        <td><span class="status active">Active</span></td>
+                        <td>
+                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Agents Section -->
+        <section id="agents" style="display: none;">
+            <h2>Agent Management</h2>
+            <div class="section-header">
+                <button class="add-new-btn"><i class="fas fa-plus"></i> Add New Agent</button>
+                <div class="filter-options">
+                    <select>
+                        <option>All Agents</option>
+                        <option>Available</option>
+                        <option>Busy</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="agents-grid">
+                <!-- Agent Card -->
+                <div class="agent-card">
+                    <div class="agent-status status-online">Available</div>
+                    <div class="agent-header">
+                        <div class="agent-avatar">
+                            <img src="agent1.jpg" alt="Sarah Smith">
+                        </div>
+                        <h3>Sarah Smith</h3>
+                        <p class="agent-id">#A001</p>
+                    </div>
+                    <div class="agent-info">
+                        <div class="info-item">
+                            <i class="fas fa-building"></i>
+                            <span>12 Properties</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-star"></i>
+                            <span>4.8 Rating</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Commission: 2.5%</span>
+                        </div>
+                    </div>
+                    <div class="agent-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">15</div>
+                            <div class="stat-label">Sales</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">8</div>
+                            <div class="stat-label">Rentals</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">95%</div>
+                            <div class="stat-label">Success</div>
+                        </div>
+                    </div>
+                    <div class="agent-actions">
+                        <button class="action-btn view-btn"><i class="fas fa-eye"></i> View</button>
+                        <button class="action-btn edit-btn"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="action-btn suspend-btn"><i class="fas fa-ban"></i> Suspend</button>
+                    </div>
+                </div>
+                <!-- Add more agent cards as needed -->
+            </div>
+        </section>
+                <!-- Add New Agent Modal -->
+<div id="addAgentModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Add New Agent</h3>
+            <span class="close-modal">&times;</span>
+        </div>
+        <form id="addAgentForm">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="name" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label>Commission Rate (%)</label>
+                <input type="number" name="commission" min="0" max="100" step="0.1" required>
+            </div>
+            <div class="form-group">
+                <label>Profile Image</label>
+                <input type="file" name="profile_image" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <select name="status" required>
+                    <option value="available">Available</option>
+                    <option value="busy">Busy</option>
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="cancel-btn">Cancel</button>
+                <button type="submit" class="submit-btn">Add Agent</button>
+            </div>
+        </form>
+    </div>
+</div>
+        <!-- Messages Section -->
+        <section id="messages" style="display: none;">
+            <h2>Messages</h2>
+            <div class="section-header">
+                <div class="message-filters">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Unread</button>
+                    <button class="filter-btn">Important</button>
+                </div>
+                <div class="search-messages">
+                    <input type="text" placeholder="Search messages...">
+                </div>
+            </div>
+
+            <div class="messages-container">
+                <div class="message-item unread">
+                    <div class="message-avatar">
+                        <img src="user1.jpg" alt="John Doe">
+                    </div>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <h4>John Doe</h4>
+                            <span class="message-time">2 hours ago</span>
+                        </div>
+                        <p class="message-subject">Property Inquiry - Sunset Villa</p>
+                        <p class="message-preview">I'm interested in viewing the property...</p>
+                    </div>
+                    <div class="message-actions">
+                        <button class="action-btn"><i class="fas fa-reply"></i></button>
+                        <button class="action-btn"><i class="fas fa-star"></i></button>
+                        <button class="action-btn"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports" style="display: none;">
+            <h2>Reports & Analytics</h2>
+            <div class="reports-grid">
+                <div class="report-card">
+                    <h3>Revenue Overview</h3>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                    <div class="report-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Total Revenue</span>
+                            <span class="stat-value">KSH 15.2M</span>
+                            <span class="stat-change positive">+12.5%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="report-card">
+                    <h3>Property Statistics</h3>
+                    <div class="chart-container">
+                        <canvas id="propertyChart"></canvas>
+                    </div>
+                    <div class="report-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Listed Properties</span>
+                            <span class="stat-value">156</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Sold Properties</span>
+                            <span class="stat-value">43</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" style="display: none;">
+            <h2>System Settings</h2>
+            <div class="settings-grid">
+                <div class="settings-card">
+                    <h3>General Settings</h3>
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label>System Name</label>
+                            <input type="text" value="REMS Admin">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Notifications</label>
+                            <input type="checkbox" checked>
+                        </div>
+                        <button type="submit" class="save-btn">Save Changes</button>
+                    </form>
+                </div>
+
+                <div class="settings-card">
+                    <h3>Security Settings</h3>
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label>Two-Factor Authentication</label>
+                            <input type="checkbox">
+                        </div>
+                        <div class="form-group">
+                            <label>Session Timeout (minutes)</label>
+                            <input type="number" value="30">
+                        </div>
+                        <button type="submit" class="save-btn">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html> 

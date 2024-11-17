@@ -3,239 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contact REMS for any inquiries or support regarding our property management software.">
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMF+qB4T4yjjyLkXt4sXyP4e5a0eV4VqayXgD" crossorigin="anonymous">
+    <title>Contact Us - REMS</title>
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px;
-            background-color: #f9f9f9;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
-            box-sizing: border-box;
-            background-image: url(https://th.bing.com/th/id/R.853d8041205c99b93df1cc8d03268458?rik=QyDnDPZ02Y18IA&pid=ImgRaw&r=0);
+            padding: 0;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                        url('https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333;
         }
-        header {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 20px;
+
+        /* Header Styles */
+        .page-header {
             text-align: center;
+            padding: 4rem 2rem 2rem;
+            background: linear-gradient(rgba(54, 54, 100, 0.9), rgba(54, 54, 100, 0.9));
+            color: white;
+            margin-bottom: 3rem;
         }
-        .flex-container {
+
+        /* Contact Section Styles */
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .contact-info, .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .contact-detail i {
+            font-size: 1.5rem;
+            color: #4CAF50;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
             width: 100%;
-            margin-top: 20px;
-            padding: 20px;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
         }
-        .contact-details, .contact-form {
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin: 10px;
-        }
-        .contact-details h1, .contact-form h3 {
-            margin: 10px 0;
-        }
-        .contact-details p, .contact-form p {
-            margin: 5px 0;
-        }
-        .contact-details span {
-            font-weight: bold;
-            margin-right: 5px;
-        }
-        label {
-            display: block;
-            margin: 10px 0 5px;
-        }
-        input, textarea {
+
+        .submit-btn {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        input[type="submit"] {
-            background-color: #4CAF50;
+            padding: 1rem;
+            background: #4CAF50;
             color: white;
             border: none;
+            border-radius: 6px;
+            font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background 0.3s ease;
         }
-        input[type="submit"]:hover {
-            background-color: #45a049;
+
+        /* FAQ Section Styles */
+        .faq-section {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        .faq {
-            text-align: center;
-            width: 100%;
-            color:rgb(28, 28, 167);
-            background-color:#f1f1f1;
-        }
-        h5 {
-            margin: 10px 0;
-            font-weight: normal;
-        }
-        h4 {
-            margin: 10px 0;
-            font-weight: bold;
+
+        .faq-question {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
             cursor: pointer;
-            padding: 10px;
-            transition: background-color 0.3s ease;
-        }
-        h4:hover {
-            background-color: #f1f1f1;
-        }
-        .arrow {
-            margin-left: 10px;
-            transition: transform 0.3s ease;
-        }
-        .answer {
-            display: none;
-            margin: 10px 0;
-            transition: max-height 0.3s ease, opacity 0.3s ease;
-            overflow: hidden;
-        }
-        .active {
-            display: block; 
-        }
-        .active + .arrow {
-            transform: rotate(90deg);
-        }
-        @media (max-width: 600px) {
-            .flex-container {
-                flex-direction: column;
-            }
-        }
-        .navbar {
-            display: flex;  
+            display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
-            background: rgba(54, 54, 100, 0.8);
-            color: white;
-            width: 98%;
+            margin-bottom: 1rem;
         }
-        .nav-links {
-            list-style-type: none;
-            display: flex;
+
+        .answer {
+            background: #fff;
             padding: 0;
-            margin: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
-        .nav-links li {
-            margin: 0 15px;
+
+        .answer.active {
+            padding: 1rem;
+            max-height: 1000px;
         }
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-        }
-        .nav-list {
-            text-align: right;
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .faq-section {
+                margin: 2rem 1rem;
+                padding: 1.5rem;
+            }
         }
     </style>
-    <script>
-        function toggleAnswer(id) {
-            const answer = document.getElementById(id);
-            answer.classList.toggle('active');
-            const question = document.querySelector(`h4[onclick="toggleAnswer('${id}')"]`);
-            const arrow = question.querySelector('.arrow');
-            answer.classList.contains('active') ? arrow.style.transform = 'rotate(90deg)' : arrow.style.transform = 'rotate(0deg)';
-        }
-    </script>
 </head>
 <body>
-    <header>Contact Us</header>
-    <div class="navbar">
-        <div class="logo">Mylogo</div>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">REMS</a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="pic.html">Properties</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
-        <div class="nav-list">
-            <ul>
-                <li><a href="sign-up.html">Sign Up</a></li>
-                <li><a href="login.html">Login</a></li>
-            </ul>
+        <div class="auth-links">
+            <a href="sign-up.html" class="signup-btn">Sign Up</a>
+            <a href="login.html" class="login-btn">Login</a>
         </div>
-    </div>
-    <main class="flex-container">
-        <div class="contact-details">
-            <p>GET IN TOUCH</p>
-            <h1>Have other Questions?</h1>
-            <p>Our team is available to assist you with any inquiries, feedback, or information you need.</p>
-            <p><span>&#9993;</span> Email us: <a href="mailto:sales@rems.io">sales@rems.io</a></p>
-            <p><span>&#128222;</span> Call us: <a href="tel:+073486764376">073486764376</a></p>
-            <p><span>&#127968;</span> Location: 7547 Hendred Ave, Nakuru</p>
-            <p>Follow us on social media: 
-                <a href="#" class="fa fa-facebook" aria-label="Facebook"></a>
-                <a href="#" class="fa fa-twitter" aria-label="Twitter"></a>
-            </p>
+    </nav>
+
+    <header class="page-header">
+        <h1>Contact Us</h1>
+        <p>Get in touch with our team for any inquiries or support. We're here to help!</p>
+    </header>
+
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Get In Touch</h2>
+            <div class="contact-detail">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <h3>Email</h3>
+                    <p>sales@rems.io</p>
+                </div>
+            </div>
+            <div class="contact-detail">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <h3>Phone</h3>
+                    <p>073486764376</p>
+                </div>
+            </div>
+            <div class="contact-detail">
+                <i class="fas fa-location-dot"></i>
+                <div>
+                    <h3>Location</h3>
+                    <p>7547 Hendred Ave, Nakuru</p>
+                </div>
+            </div>
         </div>
-        
+
         <div class="contact-form">
-            <form action="/submit" method="POST" aria-labelledby="contact-form">
-                <fieldset id="contact-form">
-                    <legend>Contact Us</legend>
-                    <h3>HAVE A QUESTION?</h3>
-                    <p>We're always here to chat! Reach out to us with any questions or feedback you may have, and we'll be happy to help.</p>
-
-                    <label for="fname">First Name</label>
-                    <input type="text" id="fname" class="fname" placeholder="Jerry" required>
-
-                    <label for="lname">Last Name</label>
-                    <input type="text" id="lname" class="lname" placeholder="Dove" required>
-
+            <h2>Send Us a Message</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" class="email" placeholder="name@example.com" required>
-
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea id="message" class="message" placeholder="Your message" rows="4" required></textarea>
-
-                    <input type="submit" id="submit-btn" value="Submit">
-                </fieldset>
+                    <textarea id="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
             </form>
         </div>
-    </main>
-    <pre>
-    <section class="faq">
+    </div>
+
+    <div class="faq-section">
         <h5>FAQ</h5>
         <h1>Frequently Asked Questions</h1>
         
-        <h4 onclick="toggleAnswer('answer0')" aria-expanded="false" aria-controls="answer0">Is my data safe?
-            <span class="arrow">➔</span>
-        </h4>
-        <div id="answer0" class="answer">
-            <p>Your data is safe with us! REMS is a cloud-based software, using Amazon's world-renowned AWS Cloud Infrastructure. In addition, all the data is password protected, so only you and your authorized users have access to it.</p>
+        <div class="faq-item">
+            <div class="faq-question">
+                <h4>Is my data safe?</h4>
+                <span class="arrow">➔</span>
+            </div>
+            <div class="answer">
+                <p>Your data is safe with us! REMS is a cloud-based software, using Amazon's world-renowned AWS Cloud Infrastructure. In addition, all the data is password protected, so only you and your authorized users have access to it.</p>
+            </div>
         </div>
         
-        <h4 onclick="toggleAnswer('answer1')" aria-expanded="false" aria-controls="answer1">Do you provide after-sales support?
-            <span class="arrow">➔</span>
-</h4>
-<div id="answer1" class="answer">
-    <p>We offer comprehensive aftersales support to ensure that you get the most out of our real estate management system. Our support services include:
+        <div class="faq-item">
+            <div class="faq-question">
+                <h4>Do you provide after-sales support?</h4>
+                <span class="arrow">➔</span>
+            </div>
+            <div class="answer">
+                <p>We offer comprehensive aftersales support including technical support, training, regular updates, dedicated account management, and custom enhancements to ensure you get the most out of our system.</p>
+            </div>
+        </div>
+    </div>
 
-        Technical Support: Our team is available to assist with troubleshooting and resolving any issues that arise after installation. We offer support via phone, email, and live chat during business hours.
-        
-        Training and Onboarding: We provide personalized training sessions to help you and your team become familiar with all system features, ensuring smooth adoption and usage.
-        
-        Regular System Updates: We offer regular software updates to enhance system performance, introduce new features, and ensure security compliance. These updates are included at no extra cost.
-        
-        Dedicated Account Manager: For ongoing clients, we assign a dedicated account manager to ensure you receive personalized support and to help you make the most of your system.
-        
-        Knowledge Base and Help Center: Our online resources include a comprehensive knowledge base, video tutorials, and user guides, so you can quickly find answers to common questions or issues.
-        
-        Priority Support Plans: For clients who require faster response times, we offer premium support packages that include priority response and extended support hours.
-        
-        Custom Enhancements: If you need system customizations, our team can provide consulting services to tailor the system to your specific business needs.</p>
-</div>
-</section>
-    </pre>
+    <script src="navbar.js"></script>
+    <script>
+        // FAQ Toggle Function
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const arrow = question.querySelector('.arrow');
+                
+                answer.classList.toggle('active');
+                arrow.style.transform = answer.classList.contains('active') 
+                    ? 'rotate(90deg)' 
+                    : 'rotate(0)';
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule a Visit - REMS</title>
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                        url('https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+            background: linear-gradient(rgba(54, 54, 100, 0.9), rgba(54, 54, 100, 0.9));
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .schedule-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .property-preview {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .property-image {
+            width: 200px;
+            height: 150px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .property-info h3 {
+            margin: 0 0 0.5rem;
+            color: #333;
+        }
+
+        .property-info p {
+            margin: 0.25rem 0;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .time-slot {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .time-slot:hover {
+            background: #f5f5f5;
+        }
+
+        .time-slot.selected {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        .submit-btn {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #45a049;
+        }
+
+        @media (max-width: 768px) {
+            .property-preview {
+                flex-direction: column;
+            }
+
+            .property-image {
+                width: 100%;
+                height: 200px;
+            }
+
+            .time-slots {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">REMS</a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pic.html">Properties</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="auth-links">
+            <a href="sign-up.html" class="signup-btn">Sign Up</a>
+            <a href="login.html" class="login-btn">Login</a>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>Schedule a Visit</h1>
+        <p>Book a viewing of your potential new home</p>
+    </div>
+
+    <div class="container">
+        <div class="schedule-form">
+            <div class="property-preview">
+                <div class="property-image">
+                    <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg" alt="Property">
+                </div>
+                <div class="property-info">
+                    <h3>High Peak Home</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Lanet, Nakuru</p>
+                    <p><i class="fas fa-money-bill"></i> KSH 100,000</p>
+                    <p><i class="fas fa-bed"></i> 3 Beds | <i class="fas fa-bath"></i> 2 Baths</p>
+                </div>
+            </div>
+
+            <form id="scheduleForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Preferred Date</label>
+                    <input type="date" id="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Preferred Time</label>
+                    <div class="time-slots">
+                        <div class="time-slot">9:00 AM</div>
+                        <div class="time-slot">10:00 AM</div>
+                        <div class="time-slot">11:00 AM</div>
+                        <div class="time-slot">2:00 PM</div>
+                        <div class="time-slot">3:00 PM</div>
+                        <div class="time-slot">4:00 PM</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Additional Notes</label>
+                    <textarea id="message"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Schedule Visit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="navbar.js"></script>
+    <script>
+        // Property data (you can move this to a separate file if needed)
+        const propertyData = {
+            1: {
+                title: 'High Peak Home',
+                price: 'KSH 100,000',
+                location: 'Lanet, Nakuru',
+                image: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg',
+                features: ['3 Beds', '2 Baths', '1500 sq ft'],
+                description: 'A beautiful modern home featuring spacious rooms, modern amenities, and a stunning view.'
+            },
+            2: {
+                title: 'Sunset Villa',
+                price: 'KSH 150,000',
+                location: 'Milimani, Nakuru',
+                image: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg',
+                features: ['4 Beds', '3 Baths', '2000 sq ft'],
+                description: 'Luxurious villa with panoramic views, modern finishes, and a spacious garden.'
+            },
+            3: {
+                title: 'Lakeside Apartment',
+                price: 'KSH 80,000',
+                location: 'Gilgil',
+                image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg',
+                features: ['2 Beds', '1 Bath', '1000 sq ft'],
+                description: 'Cozy apartment with beautiful lake views and modern amenities.'
+            },
+            4: {
+                title: 'Garden Estate',
+                price: 'KSH 200,000',
+                location: 'Lanet, Nakuru',
+                image: 'https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg',
+                features: ['5 Beds', '4 Baths', '3000 sq ft'],
+                description: 'Spectacular estate with extensive gardens and premium finishes.'
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get property ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const propertyId = urlParams.get('property');
+            
+            // Get property data
+            const property = propertyData[propertyId];
+            
+            if (property) {
+                // Update property preview section
+                document.querySelector('.property-image img').src = property.image;
+                document.querySelector('.property-info h3').textContent = property.title;
+                document.querySelector('.property-info').innerHTML = `
+                    <h3>${property.title}</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> ${property.location}</p>
+                    <p><i class="fas fa-money-bill"></i> ${property.price}</p>
+                    <p><i class="fas fa-bed"></i> ${property.features[0]} | <i class="fas fa-bath"></i> ${property.features[1]}</p>
+                `;
+            } else {
+                // Handle invalid property ID
+                document.querySelector('.property-preview').innerHTML = `
+                    <div class="error-message">
+                        <p>Property not found. Please return to the <a href="pic.html">properties page</a>.</p>
+                    </div>
+                `;
+            }
+
+            // Time slot selection
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.addEventListener('click', function() {
+                    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+
+            // Form submission
+            document.getElementById('scheduleForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get selected time slot
+                const selectedTime = document.querySelector('.time-slot.selected');
+                if (!selectedTime) {
+                    alert('Please select a preferred time slot');
+                    return;
+                }
+
+                // Collect form data
+                const formData = {
+                    propertyId: propertyId,
+                    propertyTitle: property.title,
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    date: document.getElementById('date').value,
+                    time: selectedTime.textContent,
+                    message: document.getElementById('message').value
+                };
+
+                // Here you would typically send the form data to your server
+                console.log('Scheduling visit:', formData);
+                alert('Visit scheduled successfully! We will contact you to confirm the appointment.');
+                
+                // Reset form
+                this.reset();
+                document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+            });
+
+            // Set minimum date to today
+            const dateInput = document.getElementById('date');
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.min = today;
+        });
+    </script>
+</body>
+</html> 
